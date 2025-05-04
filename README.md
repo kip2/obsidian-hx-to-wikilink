@@ -1,4 +1,4 @@
-# Title
+# hx-to-wikilink
 
 ## Summary
 
@@ -7,3 +7,5 @@
 ## Usage
 
 ## License
+
+This project is licensed under the [MIT License](./LICENSE).
