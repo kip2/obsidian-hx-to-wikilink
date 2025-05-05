@@ -1,5 +1,5 @@
 {
-  "mode": "replace",
+  "mode": "duplicate",
   "enableAll": true,
   "enableH1": true,
   "enableH2": true,
