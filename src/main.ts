@@ -24,20 +24,16 @@ class HxToWikiLinkSettingsTab extends PluginSettingTab {
     containerEl.createEl("h2", { text: "Hx to WikiLink - Settings" });
 
     new Setting(containerEl)
-      .setName("Conversion Mode")
+      .setName("Duplicate instead of replacing")
       .setDesc(
-        "Choose wether to replace the heading or duplicate it with a WikiLink.",
+        "If enabled, WikiLink will be inserted below the heading instead of replacing it.",
       )
-      .addDropdown((dropdown) =>
-        dropdown
-          .addOption("replace", "Replace heading with WikiLink")
-          .addOption("duplicate", "Insert WikiLink below heading")
-          .setValue(this.plugin.settings.mode)
-          .onChange(async (value: string) => {
-            if (value === "replace" || value === "duplicate") {
-              this.plugin.settings.mode = value;
-              await this.plugin.saveSettings();
-            }
+      .addToggle((toggle) =>
+        toggle
+          .setValue(this.plugin.settings.mode === "duplicate")
+          .onChange(async (value: boolean) => {
+            this.plugin.settings.mode = value ? "duplicate" : "replace";
+            await this.plugin.saveSettings();
           })
       );
   }
