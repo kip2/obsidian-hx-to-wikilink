@@ -47,32 +47,51 @@ export default class HxToWikiLinkPlugin extends Plugin {
   settings!: HxToWikiLinkSettings;
 
   override async onload() {
-    await this.loadSettngs();
+    await this.loadSettings();
 
     this.addSettingTab(new HxToWikiLinkSettingsTab(this.app, this));
 
+    for (let i = 1; i <= 6; i++) {
+      this.addHxCommand(
+        `convert-h${i}-to-wikilink`,
+        `Convert only H${i} to WikiLink`,
+        i,
+      );
+    }
+
+    this.addHxCommand(
+      "convert-all-hx-to-wikilink",
+      "Convert all Hx to WikiLink",
+      0,
+    );
+  }
+
+  addHxCommand(id: string, name: string, level: Number) {
     this.addCommand({
-      id: "convert-all-hx-to-wikilink",
-      name: "Convert all hx to WikiLink",
+      id,
+      name,
       callback: async () => {
         const file: TFile | null = this.app.workspace.getActiveFile();
         if (!file) return;
 
-        let text = await this.app.vault.read(file);
+        const text = await this.app.vault.read(file);
         const lines = text.split("\n");
 
         const modifiedLines = lines.flatMap((line) => {
           const match = line.match(/^(#{1,6}) (.+)$/);
           if (match) {
+            const hashes = match[1];
             const heading = match[2];
-            if (this.settings.mode == "replace") {
-              return [`[[${heading}]]`];
-            } else {
-              return [line, `[[${heading}]]`];
+
+            if (level === 0 || hashes.length === level) {
+              if (this.settings.mode === "replace") {
+                return [`[[${heading}]]`];
+              } else {
+                return [line, `[[${heading}]]`];
+              }
             }
-          } else {
-            return [line];
           }
+          return [line];
         });
 
         await this.app.vault.modify(file, modifiedLines.join("\n"));
@@ -80,7 +99,7 @@ export default class HxToWikiLinkPlugin extends Plugin {
     });
   }
 
-  async loadSettngs() {
+  async loadSettings() {
     this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
   }
 
