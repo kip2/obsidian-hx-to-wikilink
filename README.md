@@ -1,7 +1,8 @@
-# Obsidian Plugin: Hx to WikiLink
+# Hx to WikiLink
 
-A simple Obsidian plugin that lets you convert Markdown headings (`#`, `##`,
-etc.) into WikiLinks like `[[Heading Text]]`.\
+An Obsidian plugin that converts Markdown headings (`#` to `######`) into
+WikiLinks like `[[Heading]]`.
+
 Each heading level (H1–H6) can be individually enabled or disabled, and you can
 choose whether to replace the heading or insert the WikiLink below it.
 
