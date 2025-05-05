@@ -52,8 +52,8 @@ export default class HxToWikiLinkPlugin extends Plugin {
     this.addSettingTab(new HxToWikiLinkSettingsTab(this.app, this));
 
     this.addCommand({
-      id: "convert-h1-to-wikilink",
-      name: "Convert H1 to WikiLink",
+      id: "convert-all-hx-to-wikilink",
+      name: "Convert all hx to WikiLink",
       callback: async () => {
         const file: TFile | null = this.app.workspace.getActiveFile();
         if (!file) return;
