@@ -1,36 +1,5 @@
-.env
-
-#---- Scala -----
-# sbt build artifacts
-target/
-
-# IDE tools
-.bsp
-.bloop
-.metals
-#--------------
-
-#---- Clojure -----
-.clj-kondo
-.lsp
-#--------------
-
-#---- node.js -----
+data.json
 node_modules/
-#--------------
-
-#---- Rust -----
-target
-#--------------
-
-#---- mac -----
 .DS_Store
-#--------------
-
-#--- Terraform ---
-.terraform
-.terraform.lock.hcl
-*.tfstate
-*.tfstate.backup
-.tfplan
-#-----------------
+.lsp
+.clj-kondo
