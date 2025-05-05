@@ -1,4 +1,4 @@
-# Hx to WikiLink
+<h1 align="center">Hx to WikiLink</h1>
 
 An Obsidian plugin that converts Markdown headings (`#` to `######`) into
 WikiLinks like `[[Heading]]`.
@@ -32,6 +32,8 @@ choose whether to replace the heading or insert the WikiLink below it.
 [[Section 1]]
 ```
 
+![Usage Demo](./gif/usage.gif)
+
 ### Output (Duplicate mode):
 
 ```markdown
@@ -43,6 +45,8 @@ choose whether to replace the heading or insert the WikiLink below it.
 
 [[Section 1]]
 ```
+
+![Duplicate mode](./gif/duplicate.gif)
 
 ## Settings
 
